@@ -46,11 +46,27 @@ class ChessboardScreen(QMainWindow):
         self.current_phase = 0  # Tracks the current phase of the flickering sequence
 
         # Define frequencies and durations for each phase
+        #Experiment 1: 4 phases with different frequencies
+        # self.phases = [
+        #     {"frequency": 0, "duration": 20},  # No flicker
+        #     {"frequency": 1.7, "duration": 20},  # Flicker at 1.7 Hz
+        #     {"frequency": 3.7, "duration": 20},  # Flicker at 3.7 Hz
+        #     {"frequency": 5.2, "duration": 20},  # Flicker at 5.2 Hz
+        # ]
+        
+        #Experiment 2: 3 phases with different frequencies
+        
         self.phases = [
-            {"frequency": 0, "duration": 20},  # No flicker
-            {"frequency": 1.7, "duration": 20},  # Flicker at 1.7 Hz
-            {"frequency": 3.7, "duration": 20},  # Flicker at 3.7 Hz
-            {"frequency": 5.2, "duration": 20},  # Flicker at 5.2 Hz
+            {"frequency": 1.7, "duration": 30},# Flicker
+            {"frequency": 0, "duration": 10},  # Rest
+            {"frequency": 1.7, "duration": 30}, 
+            {"frequency": 0, "duration": 10},  
+            {"frequency": 1.7, "duration": 30}, 
+            {"frequency": 0, "duration": 10},  
+            {"frequency": 1.7, "duration": 30}, 
+            {"frequency": 0, "duration": 10},  
+            {"frequency": 1.7, "duration": 30}, 
+            {"frequency": 0, "duration": 10},  
         ]
                 
     def start_flickering_sequence(self):
