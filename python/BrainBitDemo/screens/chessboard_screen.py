@@ -54,18 +54,18 @@ class ChessboardScreen(QMainWindow):
         #     {"frequency": 5.2, "duration": 20},  # Flicker at 5.2 Hz
         # ]
         
-        #Experiment 2: 3 phases with different frequencies
+        #Experiment 2: 2 phases with different frequencies 5 times
         
-        self.phases = [
-            {"frequency": 1.7, "duration": 30},# Flicker
+        self.phases = [ # 
+            {"frequency": 1.7, "duration": 30},# Flicker #1
             {"frequency": 0, "duration": 10},  # Rest
-            {"frequency": 1.7, "duration": 30}, 
+            {"frequency": 1.7, "duration": 30},  # Flicker #2
             {"frequency": 0, "duration": 10},  
-            {"frequency": 1.7, "duration": 30}, 
+            {"frequency": 1.7, "duration": 30}, # Flicker #3
             {"frequency": 0, "duration": 10},  
-            {"frequency": 1.7, "duration": 30}, 
+            {"frequency": 1.7, "duration": 30}, # Flicker #4
             {"frequency": 0, "duration": 10},  
-            {"frequency": 1.7, "duration": 30}, 
+            {"frequency": 1.7, "duration": 30}, # Flicker #5
             {"frequency": 0, "duration": 10},  
         ]
                 
