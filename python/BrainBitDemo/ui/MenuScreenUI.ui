@@ -85,6 +85,13 @@
       </property>
      </widget>
     </item>
+     <item>
+     <widget class="QPushButton" name="toBlackWhiteButton">
+      <property name="text">
+       <string>Black And White</string>
+      </property>
+     </widget>
+    </item>
     <item>
      <widget class="QPushButton" name="disconnectButton">
       <property name="text">

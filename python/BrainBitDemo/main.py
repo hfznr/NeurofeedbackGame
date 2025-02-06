@@ -13,6 +13,7 @@ from screens.emotion_monopolar_screen import EmotionMonopolarScreen
 from screens.emotion_bipolar_screen import EmotionBipolarScreen
 from screens.signal_screen import SignalScreen
 from screens.menu_screen import MenuScreen
+from screens.blackwhite_screen import BlackWhiteScreen
 
 app = QApplication(sys.argv)
 stackNavigation = QStackedWidget()
@@ -26,6 +27,7 @@ emotionBipolarScreen = EmotionBipolarScreen(brain_bit_controller,stackNavigation
 emotionMonopolarScreen = EmotionMonopolarScreen(brain_bit_controller,stackNavigation, history_stack)
 spectrumScreen = SpectrumScreen(brain_bit_controller,stackNavigation, history_stack)
 chessboardScreen = ChessboardScreen(brain_bit_controller,stackNavigation, history_stack)
+blackWhiteScreen = BlackWhiteScreen(brain_bit_controller,stackNavigation, history_stack)
 
 menuScreen = MenuScreen(brain_bit_controller,stackNavigation, history_stack,
                         searchScreen, 
@@ -34,7 +36,8 @@ menuScreen = MenuScreen(brain_bit_controller,stackNavigation, history_stack,
                         emotionBipolarScreen, 
                         emotionMonopolarScreen, 
                         spectrumScreen,
-                        chessboardScreen)
+                        chessboardScreen,
+                        blackWhiteScreen)
 
 stackNavigation.addWidget(menuScreen)
 stackNavigation.addWidget(searchScreen)
@@ -44,6 +47,7 @@ stackNavigation.addWidget(emotionBipolarScreen)
 stackNavigation.addWidget(emotionMonopolarScreen)
 stackNavigation.addWidget(spectrumScreen)
 stackNavigation.addWidget(chessboardScreen)
+stackNavigation.addWidget(blackWhiteScreen)
 
 
 stackNavigation.setCurrentWidget(menuScreen)
