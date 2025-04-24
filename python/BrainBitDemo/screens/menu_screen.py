@@ -14,6 +14,7 @@ class MenuScreen(QMainWindow):
                 spectrumScreen,
                 chessboardScreen,
                 blackWhiteScreen,
+                covertScreen,
                 *args, **kwargs):
         
         super().__init__(*args, **kwargs)
@@ -31,6 +32,7 @@ class MenuScreen(QMainWindow):
         self.spectrumScreen = spectrumScreen
         self.chessboardScreen = chessboardScreen
         self.blackWhiteScreen = blackWhiteScreen
+        self.covertScreen = covertScreen
         
         self.brain_bit_controller.sensorConnectionState.connect(self.is_sensor_connected)
         self.toResistButton.setEnabled(False)
@@ -49,6 +51,7 @@ class MenuScreen(QMainWindow):
         self.toSpectrumButton.clicked.connect(self.go_to_spectrum)
         self.toChessboardButton.clicked.connect(self.go_to_chessboard)
         self.toBlackWhiteButton.clicked.connect(self.go_to_blackwhite)
+        self.toCovertButton.clicked.connect(self.go_to_covert)
         self.disconnectButton.clicked.connect(self.disconnect_sensor)
 
     def is_sensor_connected(self, state):
@@ -60,7 +63,7 @@ class MenuScreen(QMainWindow):
         self.toSpectrumButton.setEnabled(buttons_enabled)
         self.toChessboardButton.setEnabled(buttons_enabled)
         self.toBlackWhiteButton.setEnabled(buttons_enabled)
-        self.toBlackWhiteButton.setEnabled(buttons_enabled)
+        self.toCovertButton.setEnabled(buttons_enabled)
         self.disconnectButton.setEnabled(buttons_enabled)
 
     def go_to_search(self):
@@ -94,6 +97,10 @@ class MenuScreen(QMainWindow):
     def go_to_blackwhite(self):
         self.history_stack.append(self)  # Add current screen to history
         self.stackNavigation.setCurrentWidget(self.blackWhiteScreen)
+        
+    def go_to_covert(self):
+        self.history_stack.append(self)  # Add current screen to history
+        self.stackNavigation.setCurrentWidget(self.covertScreen)
         
     def disconnect_sensor(self):
         """Disconnect the sensor when the button is clicked."""

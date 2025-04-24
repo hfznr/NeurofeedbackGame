@@ -93,6 +93,13 @@
      </widget>
     </item>
     <item>
+     <widget class="QPushButton" name="toCovertButton">
+      <property name="text">
+       <string>Covert Screen</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QPushButton" name="disconnectButton">
       <property name="text">
        <string>Disconnect</string>
