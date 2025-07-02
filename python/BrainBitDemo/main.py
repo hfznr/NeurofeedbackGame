@@ -1,6 +1,9 @@
 import sys
+import subprocess
+import atexit
+import os
 
-from PyQt6.QtWidgets import QApplication, QMainWindow, QStackedWidget
+from PyQt6.QtWidgets import QApplication, QStackedWidget
 
 from neuro_impl.brain_bit_controller import brain_bit_controller
 
@@ -15,12 +18,15 @@ from screens.menu_screen import MenuScreen
 from screens.blackwhite_screen import BlackWhiteScreen
 from screens.covert_screen import CovertScreen
 
+from gaze_command import start_gaze_process, send_gaze_command
 
+# Start the GazeTracking subprocess
+gaze_script_path = os.path.join(os.path.dirname(__file__), 'GazeTracking', 'example.py')
+start_gaze_process(gaze_script_path)
 
-
+# 🧠 App Setup
 app = QApplication(sys.argv)
 stackNavigation = QStackedWidget()
-
 history_stack = []  # Stack to maintain the navigation history
 
 searchScreen = SearchScreen(brain_bit_controller, stackNavigation, history_stack)
@@ -31,7 +37,7 @@ emotionMonopolarScreen = EmotionMonopolarScreen(brain_bit_controller, stackNavig
 spectrumScreen = SpectrumScreen(brain_bit_controller, stackNavigation, history_stack)
 chessboardScreen = ChessboardScreen(brain_bit_controller, stackNavigation, history_stack)
 blackWhiteScreen = BlackWhiteScreen(brain_bit_controller, stackNavigation, history_stack)
-covertScreen = CovertScreen(brain_bit_controller, stackNavigation, history_stack)
+covertScreen = CovertScreen(brain_bit_controller, stackNavigation, history_stack, send_gaze_command)
 
 menuScreen = MenuScreen(brain_bit_controller, stackNavigation, history_stack,
                         searchScreen,
@@ -58,13 +64,16 @@ stackNavigation.addWidget(covertScreen)
 stackNavigation.setCurrentWidget(menuScreen)
 stackNavigation.show()
 
+# 🧠 Start App Loop
 try:
+    #send_gaze_command("start recording")  # Start recording when the app starts
     app.exec()
 except Exception as e:
     print(f"Error during application execution: {e}")
 finally:
     try:
         print("Stopping signals...")
+        #send_gaze_command("stop recording")  # Stop recording when the app exits
         brain_bit_controller.stop_signal()
         print("Disconnecting the sensor...")
         brain_bit_controller.disconnect_sensor()

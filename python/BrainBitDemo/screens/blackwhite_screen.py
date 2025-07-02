@@ -157,10 +157,10 @@ class BlackWhiteScreen(QMainWindow):
         except Exception as e:
             print(f"Error starting recording: {e}")
 
-    def __stop_recording(self):
+    def __stop_recording(self,path = ""):
         """Stop recording signals."""
         try:
-            self.spectrumController.stop_recording()
+            self.spectrumController.stop_recording(path = path)
             print("Recording stopped.")
         except Exception as e:
             print(f"Error stopping recording: {e}")
@@ -168,6 +168,7 @@ class BlackWhiteScreen(QMainWindow):
     def __signal_received(self, signal):
         """Handle received signals."""
         try:
+            print(signal)
             if self.current_phase < len(self.phases):
                 phase = self.phases[self.current_phase]
                 self.spectrumController.update_labels(phase["frequency"])

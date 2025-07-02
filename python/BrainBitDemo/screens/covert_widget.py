@@ -98,12 +98,16 @@ class CovertWidget(QWidget):
     def paintEvent(self, event):
         """Paint the full screen with the current color and a centered red cross."""
         painter = QPainter(self)
-        painter.fillRect(self.rect(), QColor(64, 64, 64))
+        #painter.fillRect(self.rect(), QColor(64, 64, 64))
+        painter.fillRect(self.rect(), QColor(0, 0, 0))
 
         # Set background color (flickering between black and white)
         
-        bg_color = QColor(64, 64, 64) if self.is_black else QColor(100, 100, 100)
-        #bg_color = QColor(0, 0, 0) if self.is_black else QColor(255, 255, 255)
+        # Set invisible secreen with differetn frequency
+        
+        
+        #bg_color = QColor(64, 64, 64) if self.is_black else QColor(100, 100, 100)
+        bg_color = QColor(0, 0, 0) if self.is_black else QColor(255, 255, 255)
         painter.fillRect(self.flicker_area, bg_color)
 
         # Draw a red cross in the center
